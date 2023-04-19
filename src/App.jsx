@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import styles from './App.module.css';
+import { Routes, Route } from "@solidjs/router"
+import { Navbar, Container } from 'solid-bootstrap';
+import MovieList from './components/Movie-List';
+import MovieDetails from "./components/Movie-Details";
+
 
 function App() {
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
-    </div>
+    <>
+    <Container >
+      <Navbar bg="light" expand="lg">
+          <Navbar.Brand href="#home">Solid-Movie</Navbar.Brand>
+      </Navbar>
+      <MovieList />
+    </Container>
+
+    <Routes>
+      <Route  path="/" component={MovieList}/>
+      <Route path="/movie-details" component={MovieDetails}/>
+    </Routes>
+    </>
+    
+
+    
   );
 }
 
