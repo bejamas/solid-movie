@@ -1,5 +1,5 @@
 import { createSignal, createEffect, For } from "solid-js";
-import { Col, Container, Form, Spinner, Row } from "solid-bootstrap";
+import { Col, Form, Spinner, Row } from "solid-bootstrap";
 import MovieCard from "./Movie-Card";
 
 
@@ -15,7 +15,6 @@ const MovieList = () => {
             setLoading(true)
             const res = await fetch(`http://www.omdbapi.com/?s=${searchWord()}&page=1&type=movie&apikey=${apiKey}`)
             const data = await res.json();
-            console.log(data.Search)
             setMovies(data.Search)
             setLoading(false)
         }
@@ -31,12 +30,12 @@ const MovieList = () => {
 
     return (
         <>
-        <header class="text-center">
-            <h1>Movie List</h1>
-        </header>
-            
+            <header class="text-center">
+                <h1>Movie List</h1>
+            </header>
+
             <section>
-                <Form.Group class="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group class="mb-3" >
                     <Form.Control
                         type="search"
                         placeholder="Search movie"
@@ -48,9 +47,12 @@ const MovieList = () => {
 
             <section>
                 {loading() && (
-                    <Spinner animation="border" role="status" variant="primary">
-                        <span class="visually-hidden">Loading...</span>
-                    </Spinner>
+                    <div class="text-center">
+                        <Spinner animation="border" role="status" variant="primary">
+                            <span class="visually-hidden">Loading...</span>
+                        </Spinner>
+                    </div>
+
                 )}
 
                 {movies() && movies().length > 0 ? (

@@ -1,8 +1,9 @@
 import { Button } from 'solid-bootstrap';
-import { Card, Col, Row, Container } from "solid-bootstrap";
+import { Card } from "solid-bootstrap";
+import { A } from "@solidjs/router";
 
 const MovieCard = (props) => {
-    const { Title, Year, Poster } = props.movie;
+    const { imdbID, Title, Year, Poster } = props.movie;
     return (
 
         <Card class='my-2'>
@@ -12,7 +13,11 @@ const MovieCard = (props) => {
                 <Card.Text>
                     {Year}
                 </Card.Text>
-                <Button variant="primary">See Details</Button>
+                <Button variant="primary">
+                    <A class='text-white text-decoration-none' href={`/movie-details/${imdbID}`}>
+                        See Details
+                    </A>
+                </Button>
             </Card.Body>
         </Card>
 
